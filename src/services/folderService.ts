@@ -33,7 +33,33 @@ export const folderService = {
     return apiClient.post("/folders", { name, parentId });
   },
 
+  async updateFolder(id: string, name: string): Promise<FolderDTO> {
+    return apiClient.patch(`/folders/${id}`, { name });
+  },
+
   async deleteFolder(id: string): Promise<void> {
     await apiClient.delete(`/folders/${id}`);
+  },
+
+  async createFile(
+    name: string,
+    folderId: string,
+    size: number,
+    mimeType: string
+  ): Promise<FileDTO> {
+    return apiClient.post("/files", {
+      name,
+      folderId,
+      size,
+      mimeType,
+    });
+  },
+
+  async updateFile(id: string, name: string): Promise<FileDTO> {
+    return apiClient.patch(`/files/${id}`, { name });
+  },
+
+  async deleteFile(id: string): Promise<void> {
+    await apiClient.delete(`/files/${id}`);
   },
 };

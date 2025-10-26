@@ -4,7 +4,7 @@
       <button
         v-if="node.hasChildren"
         class="expand-btn"
-        :class="{ expanded: expanded }"
+        :class="{ expanded: isExpanded }"
         @click="$emit('toggle', node.id)"
       >
         ▶
@@ -16,7 +16,7 @@
       </button>
     </div>
 
-    <div v-if="expanded && node.children" class="children">
+    <div v-if="isExpanded && node.children" class="children">
       <tree-node
         v-for="child in node.children"
         :key="child.id"
@@ -43,8 +43,8 @@ defineEmits<{
   toggle: [folderId: string];
 }>();
 
-const expanded = computed(() => props.isExpanded(props.node.id));
 const isExpandedFn = props.isExpanded;
+const isExpanded = computed(() => isExpandedFn(props.node.id));
 </script>
 
 <style scoped>
@@ -68,7 +68,11 @@ const isExpandedFn = props.isExpanded;
 
 .expand-btn,
 .expand-btn-placeholder {
-  visibility: hidden;
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .expand-btn.expanded {

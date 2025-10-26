@@ -19,18 +19,17 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps } from "vue";
 // import TreeNode from "./TreeNode.vue";
 import type { FolderTreeNode } from "../types";
 
-defineProps<{
+const props = defineProps<{
   tree: FolderTreeNode[];
   loading: boolean;
   error: string | null;
   isFolderExpanded: (id: string) => boolean;
 }>();
 
-defineEmits<{
+const emit = defineEmits<{
   select: [folderId: string];
   toggle: [folderId: string];
 }>();
@@ -38,9 +37,6 @@ defineEmits<{
 const handleToggle = (folderId: string) => {
   emit("toggle", folderId);
 };
-
-const { emit } = getCurrentInstance()!;
-import { getCurrentInstance } from "vue";
 </script>
 
 <style scoped>
