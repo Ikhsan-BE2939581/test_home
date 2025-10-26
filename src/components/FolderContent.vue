@@ -162,7 +162,7 @@
 <script setup lang="ts">
 import { ref, defineProps, defineEmits, onMounted, watch } from "vue";
 import Breadcrumb from "./Breadcrumb.vue";
-import { useFolderActions } from "../composables/useFolderAction";
+import { useFolderActions } from "../composables/useFolderActions";
 import type { FolderDTO, FileDTO } from "../types";
 
 // ✅ defineProps assigned to a variable
