@@ -1,12 +1,12 @@
 <template>
   <div class="search-container">
     <input
-      v-model="searchQuery"
+      :value="searchQuery"
       type="text"
       placeholder="🔍 Search folders and files..."
       class="search-input"
       @keyup.enter="handleSearch"
-      @input="handleInput"
+      @input="onInput"
     />
 
     <div v-if="hasResults" class="search-results">
@@ -59,7 +59,9 @@ const handleSearch = () => {
   emit("search");
 };
 
-const handleInput = () => {
+const onInput = (event: Event) => {
+  const value = (event.target as HTMLInputElement).value;
+  emit("update:searchQuery", value);
   emit("search");
 };
 </script>
